@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Pixels - 15,000 Euro Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="purchase.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="main-title">Be to Own a Part of Internet History</h1>
+            </div>
+            <div class="header-right">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="progress-text">Progress: <span id="progressPercent">0.1%</span> (€<span id="progressAmount">19</span> of €15,000)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <div class="zoom-display">
+                    <span class="zoom-level">Zoom: <span id="currentZoom">100%</span></span>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="buy-pixels.html" class="nav-link active">Buy Pixels</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="testimonials.html" class="nav-link">Testimonials</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="purchase-page">
+            <h1>Buy Your Pixel Space</h1>
+            <p class="page-intro">Join the internet's most unique digital billboard. Your pixels will be visible to millions of visitors worldwide.</p>
+            
+            <!-- Pricing Information -->
+            <section class="pricing-section">
+                <h2>Pricing Information</h2>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Price Per Pixel</h3>
+                        <div class="price-amount">€0.00723</div>
+                        <p>Every pixel costs less than a cent</p>
+                    </div>
+                    <div class="price-card">
+                        <h3>Minimum Purchase</h3>
+                        <div class="price-amount">30×30 px</div>
+                        <p>€6.50 minimum for impulse buying</p>
+                    </div>
+                    <div class="price-card">
+                        <h3>Maximum Canvas</h3>
+                        <div class="price-amount">1920×1080</div>
+                        <p>Full HD resolution canvas</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Purchase Form -->
+            <section class="purchase-section">
+                <h2>Purchase Your Pixels</h2>
+                <div class="purchase-form">
+                    <!-- Step 1: Size Selection -->
+                    <div class="form-step" id="step1">
+                        <h3>Step 1: Choose Your Size</h3>
+                        <div class="size-selection">
+                            <label>
+                                <input type="radio" name="size" value="30x30" checked>
+                                <span class="size-option">
+                                    <strong>30×30 pixels</strong> - €6.50
+                                    <small>Perfect for logos and small messages</small>
+                                </span>
+                            </label>
+                            <label>
+                                <input type="radio" name="size" value="50x50">
+                                <span class="size-option">
+                                    <strong>50×50 pixels</strong> - €18.08
+                                    <small>Ideal for company logos</small>
+                                </span>
+                            </label>
+                            <label>
+                                <input type="radio" name="size" value="100x50">
+                                <span class="size-option">
+                                    <strong>100×50 pixels</strong> - €36.15
+                                    <small>Great for banners and text</small>
+                                </span>
+                            </label>
+                            <label>
+                                <input type="radio" name="size" value="custom">
+                                <span class="size-option">
+                                    <strong>Custom Size</strong>
+                                    <small>Choose your own dimensions</small>
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <div class="custom-size hidden" id="customSize">
+                            <div class="size-inputs">
+                                <div class="input-group">
+                                    <label for="customWidth">Width (pixels):</label>
+                                    <input type="number" id="customWidth" min="30" max="1920" placeholder="30">
+                                </div>
+                                <div class="input-group">
+                                    <label for="customHeight">Height (pixels):</label>
+                                    <input type="number" id="customHeight" min="30" max="1080" placeholder="30">
+                                </div>
+                                <div class="size-info">
+                                    <span id="customPixels">0</span> pixels = <span id="customPrice">€0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Image Upload -->
+                    <div class="form-step hidden" id="step2">
+                        <h3>Step 2: Upload Your Image</h3>
+                        <div class="upload-area">
+                            <div class="upload-zone" id="uploadZone">
+                                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                                <div class="upload-content">
+                                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7,10 12,15 17,10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                    <p class="upload-text">Click to upload or drag & drop</p>
+                                    <p class="upload-hint">PNG, JPG, GIF up to 10MB</p>
+                                    <p class="upload-recommendation">Recommended: Match your selected pixel size for best results</p>
+                                </div>
+                            </div>
+                            <div id="imagePreview" class="image-preview hidden">
+                                <img id="previewImg" alt="Preview">
+                                <button id="removeImage" class="remove-image">×</button>
+                                <div class="image-info" id="imageInfo"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Position Selection -->
+                    <div class="form-step hidden" id="step3">
+                        <h3>Step 3: Choose Position</h3>
+                        <p>Click on the canvas to select where you want your pixels placed:</p>
+                        <div class="position-canvas">
+                            <canvas id="positionCanvas" class="mini-canvas"></canvas>
+                            <div class="position-info">
+                                <div class="position-display">
+                                    <span>X: <span id="posX">0</span></span>
+                                    <span>Y: <span id="posY">0</span></span>
+                                </div>
+                                <p class="position-hint">Tip: You can still zoom and pan on the main canvas</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Details -->
+                    <div class="form-step hidden" id="step4">
+                        <h3>Step 4: Add Details (Optional)</h3>
+                        <div class="details-form">
+                            <div class="input-group">
+                                <label for="hoverText">Display Text:</label>
+                                <input type="text" id="hoverText" placeholder="Your name, company, or message">
+                                <small>This text will appear when people hover over your pixels</small>
+                            </div>
+                            <div class="input-group">
+                                <label for="hoverLink">Website Link:</label>
+                                <input type="url" id="hoverLink" placeholder="https://your-website.com">
+                                <small>Optional: Add a link that opens when people click on your pixels</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Payment -->
+                    <div class="form-step hidden" id="step5">
+                        <h3>Step 5: Complete Purchase</h3>
+                        <div class="order-summary">
+                            <h4>Order Summary</h4>
+                            <div class="summary-details">
+                                <div class="summary-row">
+                                    <span>Size:</span>
+                                    <span id="summarySize">30×30 pixels</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Position:</span>
+                                    <span id="summaryPosition">(0, 0)</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Total Pixels:</span>
+                                    <span id="summaryPixels">900</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Price per pixel:</span>
+                                    <span>€0.00723</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total Price:</span>
+                                    <span id="summaryTotal">€6.50</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-section">
+                            <div class="payment-info">
+                                <h4>Payment Information</h4>
+                                <p>• Payments are processed securely through PayPal</p>
+                                <p>• All payments are non-refundable (no trolling allowed!)</p>
+                                <p>• Your pixels will be visible within 5-10 minutes after payment</p>
+                            </div>
+                            <button id="payPalBtn" class="paypal-btn">
+                                <svg class="paypal-logo" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.464C19.926 5.547 18.1 5.337 16.302 5.337H9.5c-.524 0-.968.382-1.05.9L6.1 12.036l.735-3.59c.101-.429.474-.743.91-.76l3.16-.165c.479-.025.87-.37.95-.85l1.2-6.771z"/>
+                                </svg>
+                                Purchase with PayPal
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="form-navigation">
+                        <button id="prevBtn" class="nav-btn secondary hidden">Previous</button>
+                        <button id="nextBtn" class="nav-btn primary">Next</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="purchase.js"></script>
+</body>
+</html>

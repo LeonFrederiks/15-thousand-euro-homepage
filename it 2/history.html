@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase History - 15,000 Euro Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="main-title">15,000 Euro Homepage</h1>
+                <p class="slogan">Be Apart of Internet History</p>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="buy-pixels.html" class="nav-link">Buy Pixels</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="history.html" class="nav-link active">History</a>
+                <a href="testimonials.html" class="nav-link">Testimonials</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-info">
+                <span class="progress-text">Progress: <span id="progressPercent">0.1%</span> (€<span id="progressAmount">19</span> of €15,000)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-content">
+            <h1>Purchase History</h1>
+            <p class="page-intro">See all the amazing pixels that have been purchased and join the growing community of internet history makers!</p>
+            
+            <!-- Filter Controls -->
+            <section class="filter-section">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="dateFilter">Filter by Date:</label>
+                        <select id="dateFilter">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sizeFilter">Filter by Size:</label>
+                        <select id="sizeFilter">
+                            <option value="all">All Sizes</option>
+                            <option value="small">Small (≤ 50×50)</option>
+                            <option value="medium">Medium (51×51 - 100×100)</option>
+                            <option value="large">Large (> 100×100)</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortBy">Sort by:</label>
+                        <select id="sortBy">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="price-high">Highest Price</option>
+                            <option value="price-low">Lowest Price</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Purchases</h3>
+                        <div class="stat-number">5</div>
+                        <p>Active pixels</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pixels Sold</h3>
+                        <div class="stat-number">2,700</div>
+                        <p>Total pixels</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Amount Raised</h3>
+                        <div class="stat-number">€19.52</div>
+                        <p>So far raised</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Progress</h3>
+                        <div class="stat-number">0.1%</div>
+                        <p>Complete</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline -->
+            <section class="timeline-section">
+                <h2>Purchase Timeline</h2>
+                <div class="timeline" id="purchaseTimeline">
+                    <!-- Timeline items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Load More -->
+            <section class="load-more-section">
+                <button id="loadMoreBtn" class="load-more-btn">Load More Purchases</button>
+                <p class="load-more-text">Showing 5 of 5 total purchases</p>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Mock purchase data
+        const purchaseData = [
+            {
+                id: 1,
+                x: 800,
+                y: 200,
+                width: 35,
+                height: 35,
+                price: (35 * 35 * 0.00723).toFixed(2),
+                pixels: 35 * 35,
+                company: "My Business Website",
+                link: "https://mybusiness.com",
+                date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+                status: "active"
+            },
+            {
+                id: 2,
+                x: 500,
+                y: 300,
+                width: 50,
+                height: 40,
+                price: (50 * 40 * 0.00723).toFixed(2),
+                pixels: 50 * 40,
+                company: "Test Site",
+                link: "https://testsite.com",
+                date: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000), // 4 days ago
+                status: "active"
+            },
+            {
+                id: 3,
+                x: 300,
+                y: 150,
+                width: 30,
+                height: 30,
+                price: (30 * 30 * 0.00723).toFixed(2),
+                pixels: 30 * 30,
+                company: "Pixel Art Enthusiast",
+                link: "https://example3.com",
+                date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), // 6 days ago
+                status: "active"
+            },
+            {
+                id: 4,
+                x: 200,
+                y: 200,
+                width: 30,
+                height: 30,
+                price: (30 * 30 * 0.00723).toFixed(2),
+                pixels: 30 * 30,
+                company: "Another Pixel Owner",
+                link: "https://example2.com",
+                date: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000), // 8 days ago
+                status: "active"
+            },
+            {
+                id: 5,
+                x: 100,
+                y: 100,
+                width: 30,
+                height: 30,
+                price: (30 * 30 * 0.00723).toFixed(2),
+                pixels: 30 * 30,
+                company: "First Purchase",
+                link: "https://example1.com",
+                date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000), // 10 days ago
+                status: "active"
+            }
+        ];
+
+        let displayedPurchases = 5;
+        let currentFilter = 'all';
+        let currentSort = 'newest';
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function getRelativeTime(date) {
+            const now = new Date();
+            const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
+            
+            if (diffInHours < 1) return 'Just now';
+            if (diffInHours < 24) return `${diffInHours} hours ago`;
+            
+            const diffInDays = Math.floor(diffInHours / 24);
+            if (diffInDays === 1) return 'Yesterday';
+            if (diffInDays < 7) return `${diffInDays} days ago`;
+            
+            const diffInWeeks = Math.floor(diffInDays / 7);
+            if (diffInWeeks < 4) return `${diffInWeeks} week${diffInWeeks > 1 ? 's' : ''} ago`;
+            
+            return date.toLocaleDateString();
+        }
+
+        function createTimelineItem(purchase, index) {
+            const div = document.createElement('div');
+            div.className = 'timeline-item';
+            div.style.animationDelay = `${index * 0.1}s`;
+            
+            return `
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-info">
+                            <h3 class="purchase-company">${purchase.company}</h3>
+                            <div class="timeline-meta">
+                                <span class="purchase-date">${getRelativeTime(purchase.date)}</span>
+                                <span class="purchase-time">${formatDate(purchase.date)}</span>
+                            </div>
+                        </div>
+                        <div class="timeline-price">
+                            <span class="price-amount">€${purchase.price}</span>
+                            <span class="pixels-count">${purchase.pixels.toLocaleString()} pixels</span>
+                        </div>
+                    </div>
+                    
+                    <div class="purchase-details">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Position:</label>
+                                <span>(${purchase.x}, ${purchase.y})</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Size:</label>
+                                <span>${purchase.width}×${purchase.height} pixels</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Cost per pixel:</label>
+                                <span>€0.00723</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Status:</label>
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-actions">
+                            ${purchase.link ? `<a href="${purchase.link}" target="_blank" class="visit-link">🔗 Visit Website</a>` : ''}
+                            <button class="view-pixels-btn" data-purchase="${purchase.id}">
+                                📍 View on Canvas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTimeline() {
+            const timeline = document.getElementById('purchaseTimeline');
+            let filteredData = [...purchaseData];
+            
+            // Apply filters
+            if (currentFilter !== 'all') {
+                const now = new Date();
+                filteredData = filteredData.filter(purchase => {
+                    const daysDiff = Math.floor((now - purchase.date) / (1000 * 60 * 60 * 24));
+                    
+                    switch (currentFilter) {
+                        case 'today': return daysDiff === 0;
+                        case 'week': return daysDiff <= 7;
+                        case 'month': return daysDiff <= 30;
+                        default: return true;
+                    }
+                });
+            }
+            
+            // Apply sorting
+            filteredData.sort((a, b) => {
+                switch (currentSort) {
+                    case 'oldest': return a.date - b.date;
+                    case 'price-high': return parseFloat(b.price) - parseFloat(a.price);
+                    case 'price-low': return parseFloat(a.price) - parseFloat(b.price);
+                    default: return b.date - a.date; // newest first
+                }
+            });
+            
+            // Display limited number of items
+            const itemsToShow = filteredData.slice(0, displayedPurchases);
+            
+            timeline.innerHTML = itemsToShow.map((purchase, index) => 
+                createTimelineItem(purchase, index)
+            ).join('');
+            
+            // Update load more button
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const loadMoreText = document.querySelector('.load-more-text');
+            
+            if (filteredData.length > displayedPurchases) {
+                loadMoreBtn.style.display = 'block';
+                loadMoreText.textContent = `Showing ${Math.min(displayedPurchases, filteredData.length)} of ${filteredData.length} purchases`;
+            } else {
+                loadMoreBtn.style.display = 'none';
+                loadMoreText.textContent = `Showing all ${filteredData.length} purchases`;
+            }
+            
+            // Add event listeners for view buttons
+            document.querySelectorAll('.view-pixels-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const purchaseId = e.target.dataset.purchase;
+                    const purchase = purchaseData.find(p => p.id == purchaseId);
+                    if (purchase) {
+                        // Redirect to homepage with position highlighted
+                        window.location.href = `index.html#pixel-${purchase.id}`;
+                    }
+                });
+            });
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Filter and sort event listeners
+            document.getElementById('dateFilter').addEventListener('change', (e) => {
+                currentFilter = e.target.value;
+                displayedPurchases = 5;
+                renderTimeline();
+            });
+            
+            document.getElementById('sizeFilter').addEventListener('change', (e) => {
+                // Implement size filtering logic here
+                renderTimeline();
+            });
+            
+            document.getElementById('sortBy').addEventListener('change', (e) => {
+                currentSort = e.target.value;
+                renderTimeline();
+            });
+            
+            // Load more button
+            document.getElementById('loadMoreBtn').addEventListener('click', () => {
+                displayedPurchases += 5;
+                renderTimeline();
+            });
+            
+            // Initial render
+            renderTimeline();
+            
+            // Update progress
+            document.getElementById('progressPercent').textContent = '0.1%';
+            document.getElementById('progressAmount').textContent = '19';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Canvas - Be Apart of Internet History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header with Slogan -->
+    <header class="header">
+        <h1 class="slogan">Be Apart of Internet History</h1>
+        <div class="progress-info">
+            <span class="progress-text">Progress: <span id="progressPercent">0%</span> (€<span id="progressAmount">0</span> of €15,000)</span>
+        </div>
+    </header>
+
+    <!-- Main Canvas Container -->
+    <main class="canvas-container">
+        <canvas id="pixelCanvas" class="pixel-canvas"></canvas>
+        
+        <!-- Zoom Controls -->
+        <div class="zoom-controls">
+            <button id="zoomIn" class="zoom-btn">+</button>
+            <span class="zoom-level">100%</span>
+            <button id="zoomOut" class="zoom-btn">−</button>
+        </div>
+    </main>
+
+    <!-- Floating Purchase Panel -->
+    <div id="purchasePanel" class="purchase-panel hidden">
+        <div class="panel-content">
+            <!-- Panel Header -->
+            <div class="panel-header">
+                <h2>Your Selection</h2>
+                <button id="closePanel" class="close-btn">&times;</button>
+            </div>
+
+            <!-- Selection Details -->
+            <div class="selection-details">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <label>X Position:</label>
+                        <span class="mono-text" id="selX">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Y Position:</label>
+                        <span class="mono-text" id="selY">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Width:</label>
+                        <span class="mono-text" id="selWidth">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Height:</label>
+                        <span class="mono-text" id="selHeight">0</span>
+                    </div>
+                </div>
+                <div class="detail-item full-width">
+                    <label>Total Pixels:</label>
+                    <span class="mono-text" id="totalPixels">0</span>
+                </div>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="upload-section">
+                <div class="upload-zone" id="uploadZone">
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <p class="upload-text">Click to upload or drag & drop</p>
+                        <p class="upload-hint">PNG, JPG, GIF up to 10MB</p>
+                    </div>
+                </div>
+                <div id="imagePreview" class="image-preview hidden">
+                    <img id="previewImg" alt="Preview">
+                    <button id="removeImage" class="remove-image">×</button>
+                </div>
+            </div>
+
+            <!-- Optional Link -->
+            <div class="link-section">
+                <label for="hoverLink">Optional Link (appears on hover):</label>
+                <input type="url" id="hoverLink" placeholder="https://your-website.com">
+            </div>
+
+            <!-- Optional Hover Text -->
+            <div class="text-section">
+                <label for="hoverText">Optional Text (appears on hover):</label>
+                <input type="text" id="hoverText" placeholder="Your name or message">
+            </div>
+
+            <!-- Price Calculation -->
+            <div class="price-calculation">
+                <div class="price-breakdown">
+                    <div class="price-row">
+                        <span>Pixels:</span>
+                        <span class="mono-text" id="pixelCount">0</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Price per pixel:</span>
+                        <span class="mono-text">€0.00723</span>
+                    </div>
+                    <div class="price-row total">
+                        <span>Total Price:</span>
+                        <span class="mono-text" id="totalPrice">€0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PayPal Button (Prototype) -->
+            <button id="payPalBtn" class="paypal-btn" disabled>
+                <svg class="paypal-logo" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.464C19.926 5.547 18.1 5.337 16.302 5.337H9.5c-.524 0-.968.382-1.05.9L6.1 12.036l.735-3.59c.101-.429.474-.743.91-.76l3.16-.165c.479-.025.87-.37.95-.85l1.2-6.771z"/>
+                </svg>
+                Purchase with PayPal
+            </button>
+
+            <!-- Minimum Purchase Warning -->
+            <div id="minWarning" class="min-warning hidden">
+                <svg class="warning-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                Minimum purchase is 30×30 pixels (€6.50)
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase History Panel -->
+    <div class="history-panel">
+        <h3>Recently Purchased</h3>
+        <div class="recent-purchases">
+            <!-- This will be populated dynamically -->
+        </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions">
+        <p>Click and drag to select your pixel area • Zoom with mouse wheel • Pan by dragging</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

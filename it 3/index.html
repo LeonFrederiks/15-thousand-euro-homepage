@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15,000 Euro Homepage - Be Apart of Internet History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="main-title">Be to Own a Part of Internet History</h1>
+            </div>
+            <div class="header-right">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="progress-text">Progress: <span id="progressPercent">0.1%</span> (€<span id="progressAmount">19</span> of €15,000)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <div class="zoom-display">
+                    <span class="zoom-level">Zoom: <span id="currentZoom">100%</span></span>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="buy-pixels.html" class="nav-link">Buy Pixels</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="testimonials.html" class="nav-link">Testimonials</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Canvas Container -->
+        <section class="canvas-section">
+            <div class="canvas-container">
+                <canvas id="pixelCanvas" class="pixel-canvas"></canvas>
+                
+
+            </div>
+        </section>
+        
+        <!-- Canvas Coordinates Display -->
+        <div class="canvas-coordinates" id="canvasCoordinates">
+            <span>X: <span id="coordX">0</span>, Y: <span id="coordY">0</span></span>
+        </div>
+
+        <!-- Instructions -->
+        <section class="instructions">
+            <p>🖱️ Click and drag to select your pixel area • 🖱️ Hover over purchased pixels for details • 💰 Visit <a href="buy-pixels.html">Buy Pixels</a> to purchase</p>
+        </section>
+        
+        <!-- Purchase History Panel -->
+        <section class="history-panel">
+            <h3>Recent Purchases</h3>
+            <div class="recent-purchases" id="recentPurchases">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Hover Tooltip -->
+    <div id="hoverTooltip" class="hover-tooltip hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

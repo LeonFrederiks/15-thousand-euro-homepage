@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - 15,000 Euro Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo-section">
+                    <h1 class="main-title">the 15.000 euro homepage <span class="header-subtitle">1920 x 1080 pixels | €0.00723 per pixel | Help me travel Europe!</span></h1>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="progress-text">Progress: <span id="progressPercent">0.1%</span> (€<span id="progressAmount">19</span> of €15,000)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="buy-pixels.html" class="nav-link">Buy Pixels</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="testimonials.html" class="nav-link active">Testimonials</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-content">
+            <h1>Customer Testimonials</h1>
+            <p class="page-intro">See what our pixel purchasers are saying about their experience with the 15,000 Euro Homepage!</p>
+            
+            <!-- Stats Section -->
+            <section class="testimonial-stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Happy Customers</h3>
+                        <div class="stat-number">100%</div>
+                        <p>Satisfaction rate</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Reviews</h3>
+                        <div class="stat-number">5</div>
+                        <p>Customer testimonials</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Would Recommend</h3>
+                        <div class="stat-number">5/5</div>
+                        <p>Would buy again</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Testimonial Section -->
+            <section class="add-testimonial">
+                <h2>Leave a Review</h2>
+                <p>Only customers who have completed a purchase can leave reviews. This helps ensure authentic feedback for future customers.</p>
+                
+                <form id="testimonialForm" class="testimonial-form">
+                    <div class="form-group">
+                        <label for="customerName">Your Name *</label>
+                        <input type="text" id="customerName" name="customerName" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerEmail">Email (will not be displayed) *</label>
+                        <input type="email" id="customerEmail" name="customerEmail" required placeholder="john@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purchaseInfo">What did you purchase? *</label>
+                        <select id="purchaseInfo" name="purchaseInfo" required>
+                            <option value="">Select your purchase type</option>
+                            <option value="small">Small pixels (30×30)</option>
+                            <option value="medium">Medium pixels (50×50)</option>
+                            <option value="large">Large pixels (100×50+)</option>
+                            <option value="custom">Custom size</option>
+                            <option value="planning">Planning to purchase</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Rating *</label>
+                        <div class="rating-input">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5" class="star"></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" class="star"></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" class="star"></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" class="star"></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" class="star"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonialText">Your Review *</label>
+                        <textarea id="testimonialText" name="testimonialText" required placeholder="Tell us about your experience with the pixel purchase process, the website, customer service, etc." rows="5"></textarea>
+                        <small>Minimum 50 characters required</small>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="allowDisplay" name="allowDisplay" required>
+                            <span class="checkmark"></span>
+                            I agree to have my review displayed publicly on this website
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+            </section>
+
+            <!-- Testimonials Display -->
+            <section class="testimonials-display">
+                <h2>Customer Reviews</h2>
+                <div class="testimonials-grid" id="testimonialsGrid">
+                    <!-- Testimonials will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Mock testimonials data
+        const testimonialsData = [
+            {
+                id: 1,
+                name: "Alex Thompson",
+                rating: 5,
+                purchase: "Medium pixels (50×50)",
+                text: "Absolutely loved the process! The website is so easy to use and I got my pixels live within minutes. The concept is brilliant and I'm proud to be part of internet history. My business logo looks great on the canvas!",
+                date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+                verified: true
+            },
+            {
+                id: 2,
+                name: "Maria Rodriguez",
+                rating: 5,
+                purchase: "Small pixels (30×30)",
+                text: "What a fun and unique way to advertise! The pricing is very reasonable and the entire process was smooth. I appreciate that it's non-refundable - shows the creator is serious about preventing trolling. Highly recommend!",
+                date: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+                verified: true
+            },
+            {
+                id: 3,
+                name: "David Chen",
+                rating: 5,
+                purchase: "Large pixels (100×50+)",
+                text: "The pixel homepage idea is fantastic! I bought a larger area for my startup and it's already driving traffic to our website. The hover effects work perfectly and the whole thing feels very professional. Will definitely tell my network about this!",
+                date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+                verified: true
+            },
+            {
+                id: 4,
+                name: "Sarah Johnson",
+                rating: 5,
+                purchase: "Small pixels (30×30)",
+                text: "I love being part of internet history! The website loads fast, the payment went through smoothly via PayPal, and my pixels appeared exactly where I wanted them. The grid system makes it easy to see available space. Great concept!",
+                date: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+                verified: true
+            },
+            {
+                id: 5,
+                name: "Mike Wilson",
+                rating: 5,
+                purchase: "Custom size",
+                text: "This is such a clever and creative project! I went with a custom size for my artwork and it turned out amazing. The pixel-perfect positioning means exactly what I wanted is displayed. The Dutch tax-friendly approach is also very smart. Excellent execution!",
+                date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+                verified: true
+            }
+        ];
+
+        function createStars(rating) {
+            return '⭐'.repeat(rating);
+        }
+
+        function formatRelativeDate(date) {
+            const now = new Date();
+            const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
+            
+            if (diffInHours < 1) return 'Just now';
+            if (diffInHours < 24) return `${diffInHours} hours ago`;
+            
+            const diffInDays = Math.floor(diffInHours / 24);
+            if (diffInDays === 1) return 'Yesterday';
+            if (diffInDays < 7) return `${diffInDays} days ago`;
+            
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        function createTestimonialCard(testimonial) {
+            return `
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-info">
+                            <h3 class="customer-name">${testimonial.name}</h3>
+                            <div class="purchase-info">${testimonial.purchase}</div>
+                            ${testimonial.verified ? '<div class="verified-badge">✅ Verified Purchase</div>' : ''}
+                        </div>
+                        <div class="rating">
+                            <span class="stars">${createStars(testimonial.rating)}</span>
+                            <span class="rating-text">${testimonial.rating}/5</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        <p>${testimonial.text}</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="testimonial-date">${formatRelativeDate(testimonial.date)}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadTestimonials() {
+            const grid = document.getElementById('testimonialsGrid');
+            grid.innerHTML = testimonialsData.map(testimonial => 
+                createTestimonialCard(testimonial)
+            ).join('');
+        }
+
+        function setupForm() {
+            const form = document.getElementById('testimonialForm');
+            const ratingInputs = document.querySelectorAll('input[name="rating"]');
+            const stars = document.querySelectorAll('.star');
+            
+            // Star rating functionality
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    const rating = index + 1;
+                    document.getElementById(`star${rating}`).checked = true;
+                    updateStarDisplay(rating);
+                });
+            });
+            
+            ratingInputs.forEach(input => {
+                input.addEventListener('change', (e) => {
+                    updateStarDisplay(e.target.value);
+                });
+            });
+            
+            function updateStarDisplay(selectedRating) {
+                stars.forEach((star, index) => {
+                    if (index < selectedRating) {
+                        star.style.opacity = '1';
+                    } else {
+                        star.style.opacity = '0.3';
+                    }
+                });
+            }
+            
+            // Form submission
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const testimonial = {
+                    id: Date.now(),
+                    name: formData.get('customerName'),
+                    rating: parseInt(formData.get('rating')),
+                    purchase: formData.get('purchaseInfo'),
+                    text: formData.get('testimonialText'),
+                    date: new Date(),
+                    verified: false
+                };
+                
+                // Validate form
+                if (testimonial.text.length < 50) {
+                    alert('Please write a review with at least 50 characters.');
+                    return;
+                }
+                
+                // In a real application, this would submit to a server
+                // For demo purposes, we'll just show a success message
+                alert('Thank you for your review! It will be reviewed and added to the site soon.');
+                
+                // Reset form
+                form.reset();
+                updateStarDisplay(0);
+            });
+            
+            // Character count for textarea
+            const textarea = document.getElementById('testimonialText');
+            textarea.addEventListener('input', () => {
+                const remaining = 50 - textarea.value.length;
+                const small = textarea.nextElementSibling;
+                
+                if (remaining > 0) {
+                    small.textContent = `${remaining} characters remaining`;
+                    small.style.color = 'var(--text-secondary)';
+                } else {
+                    small.textContent = 'Thank you for your detailed review!';
+                    small.style.color = 'var(--success-500)';
+                }
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTestimonials();
+            setupForm();
+            
+            // Update progress
+            document.getElementById('progressPercent').textContent = '0.1%';
+            document.getElementById('progressAmount').textContent = '19';
+        });
+    </script>
+</body>
+</html>
